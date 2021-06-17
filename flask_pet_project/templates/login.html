@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#03363D">
+<table align="right" cellpadding="5" >
+    <tr align="center" valign="middle">
+    <td align="center" valign="middle" bgcolor="silver"> <a href={{url_for('index')}} style="text-decoration: none">
+        <font size="4" color="#03363D"> Return to main page </font></a> </td>
+    </tr>
+</table>
+
+<br>
+    <h2 align="center"><font color="#CAF8FF" style="font-weight: 500; font-size:30px"> Log in: </font></h2>
+<br>
+
+<section>
+{% for msg in get_flashed_messages() %}
+    <pre align="center" style='margin: 0;'> <font size="4" color='#ffd4d9' style="background: #eb343d;"> <b>{{msg}}</b></font></pre>
+{% endfor %}
+</section>
+
+<form method="post">
+    <table align = "center" cellpadding="10">
+    <tr> <td align="right">
+        <label for="username"><font size="4" color="#BCFFDA">Username:</font></label>
+        <input name="username" id="username" required> </td></tr>
+    <tr> <td align="right">
+        <label for="password"><font size="4" color="#BCFFDA">Password:</font></label>
+        <input type="password" name="password" id="password" required> </td></tr>
+    <tr> <td align="center">
+        <button type="submit"> <font size="3" color="#03363D"> Log in </font></button></td></tr>
+    </table>
+</form>
+
+</body>
+</html>

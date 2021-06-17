@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating tests</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+</head>
+
+<body bgcolor="#03363D">
+<table align="left" cellpadding="5" >
+    <tr align="center" valign="middle">
+        <td style="border: 1px solid #9BDEF0;"> <font size="5" color="#9BDEF0"> <b> {{ session['user_name'] }}</b></font> </td>
+        <td align="center" valign="middle" bgcolor="#9BDEF0"> <a href={{url_for('auth.logout')}} style="text-decoration: none">
+            <font size="4" color="#03363D"> Log out </font></a> </td>
+    </tr>
+</table>
+
+    <table align="right" cellpadding="5" >
+    <tr align="center" valign="middle">
+        <td  align="center" valign="middle" bgcolor="#E8A0EB"> <a href={{url_for('tests.all_tests')}} style="text-decoration: none">
+            <font size="4" color="#03363D"> Show all available tests </font></a> </td>
+        <td align="center" valign="middle" bgcolor="#CCACF0"> <a href={{url_for('index')}} style="text-decoration: none">
+            <font size="4" color="#03363D"> Return to main page </font></a> </td>
+    </tr>
+    </table>
+<br>
+<br>
+<h2 align="center"><font color="#CAF8FF" style="font-weight: 500; font-size:30px"> Creating tests: </font></h2>
+
+{% block question_answers %} {% endblock question_answers %}
+
+</body>
+</html>

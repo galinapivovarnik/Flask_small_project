@@ -1,0 +1,37 @@
+{% extends 'creating_page.html' %}
+
+{% block question_answers %}
+
+<section>
+{% for msg in get_flashed_messages() %}
+    <pre align="center" style='margin: 0;'> <font size="4" color='#ffd4d9' style="background: #eb343d;"> <b>{{msg}}</b></font></pre>
+{% endfor %}
+</section>
+<br>
+
+<form method="POST">
+    <table align="center" cellspacing="10" bgcolor="#002024">
+        <tr><td class="text_"> Write down test's title:</td></tr>
+        <tr><td>
+            <textarea name="test_title" id="test_title" cols="80" rows="2" required></textarea>
+        </td></tr>
+
+        <tr><td class="text_"> Enter count of questions:<br>
+        <font size="3" style="font-weight: 300">(only integers are allowed)</font>
+        </td></tr>
+        <tr><td>
+            <textarea name="test_q_count" id="test_q_count" cols="80" rows="2" required></textarea>
+        </td></tr>
+
+        <tr><td class="text_"> Enter count of answers the question:<br>
+        <font size="3" style="font-weight: 300">(only integers are allowed)</font>
+        </td></tr>
+        <tr><td>
+            <textarea name="test_a_count" id="test_a_count" cols="80" rows="2" required></textarea>
+        </td></tr>
+
+        <tr><td align="right"><button type="submit" name="submit_test_settings">
+            <font size="3" color="#03363D"> Go to test creation >> </font> </button></td></tr>
+    </table>
+</form>
+{% endblock question_answers %}

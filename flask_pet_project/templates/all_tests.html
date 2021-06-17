@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All tests</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+</head>
+
+<body bgcolor="#03363D">
+<table align="left" cellpadding="5" >
+    <tr align="center" valign="middle">
+        {% if session['user_id'] %}
+            <td style="border: 1px solid #9BDEF0;"> <font size="5" color="#9BDEF0">
+                <b>{{ session['user_name'] }}</b>
+            </font> </td>
+            <td align="center" valign="middle" bgcolor="#9BDEF0"> <a href={{url_for('auth.logout')}}
+                                                                     style="text-decoration: none">
+                <font size="4" color="#03363D"> Log out </font></a> </td>
+        {% else %}
+        <td align="center" valign="middle" bgcolor="#9BDEF0"> <a href={{url_for('auth.register')}} style="text-decoration: none">
+            <font size="4" color="#03363D"> Register </font></a> </td>
+        <td align="center" valign="middle" bgcolor="#A0EBC0"> <a href={{url_for('auth.login')}} style="text-decoration: none">
+            <font size="4" color="#03363D"> Log in </font></a> </td>
+        {% endif %}
+    </tr>
+</table>
+
+    <table align="right" cellpadding="5" >
+    <tr align="center" valign="middle">
+        <td  align="center" valign="middle" bgcolor="#E8A0EB"> <a href={{url_for('tests.create_tests')}} style="text-decoration: none">
+            <font size="4" color="#03363D"> Create test </font></a> </td>
+        <td align="center" valign="middle" bgcolor="#CCACF0"> <a href={{url_for('index')}} style="text-decoration: none">
+            <font size="4" color="#03363D"> Return to main page </font></a> </td>
+    </tr>
+    </table>
+<br>
+<br>
+    <h2 align="center"><font color="#CAF8FF" style="font-weight: 500; font-size:30px"> All tests: </font></h2>
+    <p align="center"> <font color="#CAF8FF" style="font-weight: 500; font-size:17px">(Click on one of title to pass the test.) </font> </p>
+    <br>
+
+<table align="center" bgcolor="#002024" width="70%" cellspacing="20" >
+
+    {% for it in tests %}
+    <tr><td>
+    <table align="center" bgcolor="#002024" width="100%" cellpadding="10" style="border: #167e8c solid thin">
+    <tr><td>
+        <a href={{url_for('tests.test_var', test_id=it['test_id'])}} style="color: #9BDEF0; font-weight: 265;
+            font-size:21px"> {{it['test_name']}} >> </a>
+
+        {% if session['user_id'] == it['user_id'] %}
+        <br>
+        <br>
+        <form method="POST">
+            <button type="submit" name="delete_test_{{it['test_id']}}" value="{{it['test_id']}}"
+                    style=" background-color: #002024; color: #65b4c9; font-weight: 40; font-size:15px;
+                    text-decoration: none; border: #167e8c solid thin; padding: 3px;"> Delete </button>
+        </form>
+    {% endif %}
+
+    </td>
+        <td align="right" style="color: #65b4c9; font-weight: 40; font-size:17px"> {{it['test_date']}}
+            <br> (made by: {{ names[it['user_id']] }}) </td>
+    </tr>
+    </table>
+    </td></tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
+

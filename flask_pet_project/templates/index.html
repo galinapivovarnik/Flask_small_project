@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+</head>
+
+<body bgcolor="#03363D">
+<table align="left" cellpadding="5" >
+    <tr align="center" valign="middle" >
+        {% if session['user_id'] %}
+        <td style="border: 1px solid #9BDEF0;"> <font size="5" color="#9BDEF0">
+            <b>{{ session['user_name'] }}</b>
+        </font> </td>
+        <td align="center" valign="middle" bgcolor="#9BDEF0"> <a href={{url_for('auth.logout')}}
+                                                                 style="text-decoration: none">
+                <font size="4" color="#03363D"> Log out </font> </a> </td>
+        {% else %}
+            <td align="center" valign="middle" bgcolor="#9BDEF0">
+                <a href={{url_for('auth.register')}} style="text-decoration: none">
+                    <font size="4" color="#03363D" style="text-decoration: none"> Register </font></a> </td>
+            <td align="center" valign="middle" bgcolor="#A0EBC0">
+                <a href={{url_for('auth.login')}} style="text-decoration: none">
+                    <font size="4" color="#03363D" style="text-decoration: none"> Log in </font></a> </td>
+        {% endif %}
+    </tr>
+</table>
+<br>
+<br>
+<br>
+
+<h1 align="center"> <font color="#CAF8FF" style="font-weight: 600">
+    On this website You are able to pass or create the tests! </font></h1>
+<hr width="80%" color="#167987">
+<br>
+<br>
+<table align="center" cellspacing="9" cellpadding="12">
+    <tr>
+        <td align="center" style="border: #54d6e8 solid medium;">
+            <a href={{url_for('tests.all_tests')}} style="text-decoration: none;">
+                <font color="#54d6e8" style="font-weight: 500; font-size: 2em;"> Show all available tests </font></a>
+        </td></tr>
+    <tr> <td align="center" style="background: #54d6e8; border: #54d6e8 solid medium;">
+<a href={{url_for('tests.create_tests')}} style="text-decoration: none">
+    <font size="6" color="#03363D" style="font-weight: 500; font-size: 2em;"> Create test </font></a>
+    </td> </tr>
+</table>
+
+</body>
+</html>

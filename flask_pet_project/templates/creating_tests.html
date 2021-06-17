@@ -1,0 +1,41 @@
+{% extends 'creating_page.html' %}
+
+{% block question_answers %}
+
+<section>
+{% for msg in get_flashed_messages() %}
+    <pre align="center" style='margin: 0;'> <font size="4" color='#ffd4d9' style="background: #eb343d;"> <b>{{msg}}</b></font> </pre>
+{% endfor %}
+</section>
+<br>
+
+<form method="POST">
+    <table align="center" cellspacing="10" bgcolor="#002024">
+        <tr><td class="text_"> Write down your question:</td></tr>
+
+        {% for i in range(qu_count) %}
+        <tr><td>
+            <p size="3" style="font-weight: 600; color: #CAF8FF;">{{i+1}}.</p>
+            <textarea name="question{{i+1}}" id="question{{i+1}}" cols="97" rows="6" required></textarea>
+        </td></tr>
+
+        <tr><td class="text_"> Add answers the question: <br>
+            <font size="3" style="font-weight: 300">(select correct answer by clicking on the round button)</font>
+        </td></tr>
+            <tr><td>
+                <ul style="list-style-type: none; list-style-position: outside;">
+            {% for it in range(an_count) %}
+                <li><input type="checkbox" name="check_correct_answer_{{it+1+i*an_count}}" value="answer{{it+1+i*an_count}}">
+                    <textarea name="answer{{it+1+i*an_count}}" id="answer{{it+1+i*an_count}}" cols="76" rows="2" required></textarea></li>
+            {% endfor %}
+            </ul></tr>
+        {% endfor %}
+
+        <tr>
+            <td align="right">
+                <button type="submit" name="submit_test"> <font size="3" color="#03363D"> Submit </font> </button>
+        </td></tr>
+    </table>
+</form>
+{% endblock question_answers %}
+

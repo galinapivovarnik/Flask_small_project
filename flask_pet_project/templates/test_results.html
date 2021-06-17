@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test result!</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        * { font-weight: 450; }
+    </style>
+</head>
+
+<body bgcolor="#03363D">
+<table align="left" cellpadding="5" >
+    <tr align="center" valign="middle">
+        <td style="border: 1px solid #9BDEF0;"> <font size="5" color="#9BDEF0"> <b> {{ session['user_name'] }}
+            </b></font> </td>
+        <td align="center" valign="middle" bgcolor="#9BDEF0"> <a href={{url_for('auth.logout')}} style="text-decoration: none">
+            <font size="4" color="#03363D"> Log out </font></a> </td>
+    </tr>
+</table>
+
+    <table align="right" cellpadding="5" >
+    <tr align="center" valign="middle">
+        <td  align="center" valign="middle" bgcolor="#E8A0EB"> <a href={{url_for('tests.all_tests')}}
+                                                                  style="text-decoration: none">
+            <font size="4" color="#03363D"> Show all available tests </font></a> </td>
+    </tr>
+    </table>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<table align="center" bgcolor="#002024" width="50%" cellspacing="20" >
+    <tr><td></td></tr>
+    <tr><td align="center" class="your_results"> Your results:
+        </td></tr>
+    <tr><td>
+        <hr size="1" width="60%" color="#094f59">
+    </td></tr>
+    <tr><td class="final_result" align="center">
+        You answered <font style="font-size:48px; color: #bdf6ff"> {{interest}}% </font> of the questions correctly.<br><br>
+        <font class="your_results" style="color:#3a8f9c"> (You made {{incorrect_a}} mistake(s) in your answers.) </font>
+
+    </td></tr>
+    <tr><td>
+        <hr size="1" width="30%" color="#094f59">
+    </td></tr>
+    <tr><td></td></tr>
+</table>
+
+<br>
+<table align="center" cellpadding="10" cellspacing="17"><tr>
+    <td align="center" valign="middle" bgcolor="#6db6c9">
+        <a href={{url_for('tests.test_var', test_id=test_id_)}}
+           style="color: #03363D; font-weight: 365; font-size:24px; text-decoration: none"> << Try again </a>
+    </td>
+    <td align="center" valign="middle" bgcolor="#CCACF0"> <a href={{url_for('index')}} style="text-decoration: none">
+            <font size="5" color="#03363D"> Return to main page >> </font></a> </td>
+</tr></table>
+
+</body>
+</html>

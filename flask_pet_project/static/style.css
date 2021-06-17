@@ -1,0 +1,28 @@
+* {
+    font-family: "Myriad Pro", Arial, sans-serif;
+    font-weight: 450;
+    }
+.text_ {
+    color: #CAF8FF;
+    font-weight: 400;
+    font-size:19px;
+}
+.your_results{
+    font-weight: 200;
+    font-size:20px;
+    color: #4da6b3;
+}
+.final_result{
+    font-weight: 400;
+    font-size:28px;
+    color: #67bbc7;
+}
+.questions_style{
+    font-weight: 200;
+    font-size:18px;
+    color: #9ddae3;
+}
+.answers_style{
+    font-weight: 150;
+    font-size:16px;
+}
