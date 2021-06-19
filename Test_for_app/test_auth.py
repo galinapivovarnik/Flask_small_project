@@ -1,5 +1,5 @@
 import pytest
-from flask import g, session
+from flask import g, session, Response
 from flask_pet_project.dbase import get_db
 
 
@@ -10,6 +10,7 @@ def test_register(client, app):
     # client.post - makes a post-request and converting the data-dict into form data
     # data - contains the body of the response as bytes
     response = client.post('/register', data={'username': 'a', 'password': 'a'})
+    # response.text - вертає текст сторінки (напр html-файл або те що вертає ф-ція...)
     assert 'http://localhost/login' == response.headers['Location']
 
     with app.app_context():
@@ -25,7 +26,7 @@ def register_validate_input(client, username, password, message):
     assert message in response.data
 
 
-def test_login(client, app):
+def test_login(client, app, auth):
     # client.get - makes a get-request and return the Response object
     assert client.get('/login').status_code == 200
     response = auth.login() 
@@ -41,7 +42,7 @@ def test_login(client, app):
                          (('a', 'test', b'Incorrect username.'), ('test', 'a', b'Incorrect password.'), ))
 def login_validate_input(auth, username, password, message):
     response = auth.login(username, password)
-    assert message in response.data
+    assert message in response.data  # response.data - як response.text , але у байтах
 
 
 def test_logout(client, auth):

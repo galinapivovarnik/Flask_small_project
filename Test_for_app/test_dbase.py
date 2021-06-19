@@ -10,14 +10,14 @@ def test_get_close_dbase(app):
         db = get_db()
         assert db is get_db()
 
-    # Call correspond error during sql-request
+    # Call correspond error during sql-request (u can't connect to db because it was closed earlier)
     with pytest.raises(sqlite3.ProgrammingError) as e:
         db.execute('SELECT 1')
     # Get access to the information about raised error
     assert 'closed' in str(e.value)
 
 
-# Це я поки майже не розумію як працює і для чого:
+# Це я поки майже не розумію як працює і для чого (цю ф-цію можна видалити, бо вона тестує сам фласк):
 def test_init_db_command(runner, monkeypatch):
     class Recorder:
         called = False

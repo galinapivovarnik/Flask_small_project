@@ -6,6 +6,7 @@ def test_index(client, auth):
     response = client.data('/')
     assert b'Register' in response.data
     assert b'Log in' in response.data
+    assert b'Log out' not in response.data
 
     auth.login()
     response = client.data('/')
