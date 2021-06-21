@@ -16,4 +16,4 @@ def test_index(client, auth):
 
 @pytest.mark.parametrize('path', ('/creating_tests', '/all_tests/<test_id>',))
 def test_login_required(client, path):
-
+    ...
