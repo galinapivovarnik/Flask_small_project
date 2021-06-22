@@ -69,7 +69,6 @@ def create_tests():
 
 
 @bp.route('/creating_tests/q_a', methods=('GET', 'POST'))
-@login_required
 def create_tests_2():
     q = int(session['test_q_count'])
     a = int(session['test_a_count'])

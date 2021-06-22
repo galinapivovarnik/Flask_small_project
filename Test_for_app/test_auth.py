@@ -1,6 +1,6 @@
 import pytest
-from flask import g, session, Response
-from flask_pet_project.dbase import get_db
+from flask import session
+from ..flask_pet_project.dbase import get_db
 
 
 def test_register(client, app):
@@ -20,13 +20,13 @@ def test_register(client, app):
 # @pytest.mark.parametrize - tells Pytest to run the same function with different arguments
 @pytest.mark.parametrize(('username', 'password', 'message'),
                          (('', '', b'Username is required.'), ('a', '', b'Password is required.'),
-                          ('test', 'test', b'User with name test is already exist.')))
-def register_validate_input(client, username, password, message):
+                          ('test', 'test', b'already exist')))
+def test_register_validate_input(client, username, password, message):
     response = client.post('/register', data={'username': username, 'password': password})
     assert message in response.data
 
 
-def test_login(client, app, auth):
+def test_login(client, auth):
     # client.get - makes a get-request and return the Response object
     assert client.get('/login').status_code == 200
     response = auth.login() 
@@ -34,15 +34,15 @@ def test_login(client, app, auth):
 
     with client:
         client.get('/')
-        assert session['username'] == 'test'
+        assert session['user_name'] == 'test'
 
 
 # @pytest.mark.parametrize - tells Pytest to run the same function with different arguments
 @pytest.mark.parametrize(('username', 'password', 'message'),
                          (('a', 'test', b'Incorrect username.'), ('test', 'a', b'Incorrect password.'), ))
-def login_validate_input(auth, username, password, message):
+def test_login_validate_input(auth, username, password, message):
     response = auth.login(username, password)
-    assert message in response.data  # response.data - як response.text , але у байтах
+    assert message in response.data  # response.data - like response.text , but in bytes
 
 
 def test_logout(client, auth):

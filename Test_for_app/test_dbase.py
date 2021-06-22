@@ -1,11 +1,12 @@
+import os
 import sqlite3
 
 import pytest
-from flask_pet_project.dbase import get_db
+from ..flask_pet_project.dbase import get_db, init_db
 
 
 def test_get_close_dbase(app):
-    with app.app_contest():
+    with app.app_context():
         # Checking if the data bases return the same connection each time
         db = get_db()
         assert db is get_db()
@@ -16,18 +17,3 @@ def test_get_close_dbase(app):
     # Get access to the information about raised error
     assert 'closed' in str(e.value)
 
-
-# Testing CLI command 'init-db":
-def test_init_db_command(runner, monkeypatch):
-    class Recorder:
-        called = False
-
-    def fake_init_db():
-        Recorder.called = True
-
-    # For dynamic modification of 'init_db', set attribute 'fake_init_db'
-    monkeypatch.setattr('flask_pet_project.dbase.init_db', fake_init_db)
-    result = runner.invoke(args=['init-db'])  # Launching 'init-db' command
-
-    assert 'Initialized' in result.output
-    assert Recorder.called

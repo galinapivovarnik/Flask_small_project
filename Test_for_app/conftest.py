@@ -2,11 +2,11 @@ import os
 import tempfile
 
 import pytest
-from flask_pet_project import create_app
-from flask_pet_project.dbase import get_db, init_db
+from ..flask_pet_project import create_app
+from ..flask_pet_project.dbase import get_db, init_db
 
 # Open file with test data:
-with open('.test_data.sql') as f:
+with open(os.path.join(os.path.dirname(__file__), 'test_data.sql')) as f:
     test_data_sql_ = f.read()
 
 

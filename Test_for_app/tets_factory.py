@@ -1,4 +1,4 @@
-from flask_pet_project import create_app
+from ..flask_pet_project import create_app
 
 
 # Testing correct work of the Flask
