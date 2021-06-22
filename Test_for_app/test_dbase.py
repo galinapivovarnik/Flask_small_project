@@ -17,7 +17,7 @@ def test_get_close_dbase(app):
     assert 'closed' in str(e.value)
 
 
-# Це я поки майже не розумію як працює і для чого (цю ф-цію можна видалити, бо вона тестує сам фласк):
+# Testing CLI command 'init-db":
 def test_init_db_command(runner, monkeypatch):
     class Recorder:
         called = False
