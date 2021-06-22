@@ -70,6 +70,6 @@ def login():
 
 @bp.route('/logout')
 def logout():
-    session.clear()
     session['user_id'] = None
+    session.clear()
     return redirect(url_for('index'))
