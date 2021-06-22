@@ -1,6 +1,4 @@
 import pytest
-from ..flask_pet_project.dbase import get_db
-from flask import session, request
 
 
 def test_index(client, auth):
