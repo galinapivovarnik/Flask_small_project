@@ -20,7 +20,7 @@ def test_register(client, app):
 # @pytest.mark.parametrize - tells Pytest to run the same function with different arguments
 @pytest.mark.parametrize(('username', 'password', 'message'),
                          (('', '', b'Username is required.'), ('a', '', b'Password is required.'),
-                          ('test', 'test', b'User with name test is already exist.') ))
+                          ('test', 'test', b'User with name test is already exist.')))
 def register_validate_input(client, username, password, message):
     response = client.post('/register', data={'username': username, 'password': password})
     assert message in response.data
