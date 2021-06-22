@@ -46,48 +46,9 @@ def test_create_tests_validate_input(client, auth, test_title, test_q_count, tes
         assert client.get('/creating_tests/q_a').status_code == 200
 
 
-def test_create_tests_2_validate_input(client, auth, q=2, a=2):
-    auth.login()
-
-    response = client.post('/creating_tests/q_a')
-    for i in range(q):
-        if not request.form[f'question{i+1}']:
-            assert f'You didn\'t specify question {i+1}.' in response.text
-
-    for i in range(a):
-        if not request.form[f'answer{i+1}']:
-            assert f'You didn\'t fill some answer field.' in response.text
-
-    assert 'http://localhost/all_tests' in response.headers['Location']
-
-
 def test_all_tests(client, auth):
     auth.login()
     assert client.get('/all_tests').status_code == 200
 
     response = client.get('/all_tests')
     assert b'Delete' in response.data
-
-
-@pytest.mark.parametrize('test_id', ('1', '2', '3', '4', '5', '6', '7', '8'))
-def test_test_var(client, auth, test_id):
-    auth.login()
-    assert client.get(f'all_tests/{test_id}').status_code == 200
-
-    response = client.post(f'all_tests/{test_id}')
-
-    assert f'http://localhost/results/{test_id}' in response.headers['Location']
-
-
-@pytest.mark.parametrize('test_id', ('1', '2', '3', '4', '5', '6', '7', '8'))
-def test_test_results(client, test_id):
-    session['correct_answer_interest'] = 1
-    session['incorrect_answer_interest'] = 1
-
-    assert client.get(f'results/{test_id}').status_code == 200
-
-    response = client.get(f'results/{test_id}')
-    assert b'<< Try again' in response.data
-    assert b'Return to main page >>' in response.data
-
-
