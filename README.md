@@ -9,4 +9,4 @@ In application there are such functions:
 - pass tests (and see the results)
 
 Gif of application in action: 
-<img src="https://drive.google.com/drive/folders/1Z0Xl7nxVb8wHEYMq4QilwDYek7yEFpQg?usp=sharing">
+<img src="https://media.giphy.com/media/GHiNZfhPCUbBHsYZrS/giphy.gif">
