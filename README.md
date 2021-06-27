@@ -9,4 +9,6 @@ In application there are such functions:
 - pass tests (and see the results)
 
 Gif of application in action: 
+
+
 <img src="https://media.giphy.com/media/GHiNZfhPCUbBHsYZrS/giphy.gif">
