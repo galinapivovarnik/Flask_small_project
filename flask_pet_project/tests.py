@@ -6,7 +6,8 @@ bp = Blueprint('tests', __name__)
 
 
 def login_required(func):
-    # Decorator for ability to creating and passing the tests, if don't logged in:
+    """Decorator for ability to create and pass the tests, if not logged in"""
+
     @functools.wraps(func)
     def wrap(*args, **kwargs):
         try:
@@ -22,6 +23,8 @@ def login_required(func):
 @bp.route('/creating_tests', methods=('GET', 'POST'))
 @login_required
 def create_tests():
+    """Function for creating title of test and numbers of questions & answers"""
+
     db = dbase.get_db()
     if request.method == 'POST':
         test_title = request.form['test_title']
@@ -70,6 +73,9 @@ def create_tests():
 
 @bp.route('/creating_tests/q_a', methods=('GET', 'POST'))
 def create_tests_2():
+    """Function for continue creating test. User have to write down the questions and answers for each,
+    also user have to check all right answers."""
+
     q = int(session['test_q_count'])
     a = int(session['test_a_count'])
     if request.method == 'POST':
@@ -123,6 +129,9 @@ def create_tests_2():
 
 @bp.route('/all_tests', methods=('GET', 'POST'))
 def all_tests():
+    """Function for depicting all existed tests from db. User able to select test for passing
+    and also able to delete tests which were created only by current user."""
+
     db = dbase.get_db()
     db.cursor().execute('DELETE FROM tests WHERE status=?', ('incomplete',))
     db.commit()
@@ -173,6 +182,8 @@ def all_tests():
 @bp.route('/all_tests/<test_id>', methods=('GET', 'POST'))
 @login_required
 def test_var(test_id):
+    """Function for passing selected test. If method == 'POST' - user will be redirected to result-page."""
+
     # Page for passing chosen test
     db = dbase.get_db()
     test_name_ = db.cursor().execute('SELECT * FROM tests WHERE test_id=?', (test_id,)).fetchone()['test_name']
@@ -229,6 +240,8 @@ def test_var(test_id):
 
 @bp.route('/results/<test_id>')
 def test_results(test_id):
+    """This function select the result of just passed test by current user."""
+
     # Page for selecting the result of testing
     return render_template('test_results.html', interest=session['correct_answer_interest'],
                            incorrect_a=session['incorrect_user_answer_num'], test_id_=test_id)
