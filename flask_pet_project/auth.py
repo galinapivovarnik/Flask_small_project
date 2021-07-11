@@ -7,6 +7,9 @@ bp = Blueprint('auth', __name__)
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
+    """Function for registering new user.
+    After registering the user will be redirected to log in page."""
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -28,7 +31,7 @@ def register():
             db.commit()
             session['user_id'] = None
             return redirect(
-                url_for('.login'))  # ??? ще не можу перевірити чи це працює, бо там помилки з бд перед цим раніше
+                url_for('.login'))
         flash(error)
     session['user_id'] = None
     return render_template('register.html')
@@ -36,6 +39,10 @@ def register():
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
+    """The function for logging in existed users.
+    If method == 'GET' - user can log in
+    if 'POST' - user will be redirected to the main page."""
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -70,6 +77,9 @@ def login():
 
 @bp.route('/logout')
 def logout():
+    """Function for logging out the user and cleaning the session info.
+    After logging out user will be redirected to the main page."""
+
     session['user_id'] = None
     session.clear()
     return redirect(url_for('index'))
