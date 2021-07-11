@@ -3,6 +3,9 @@ from flask import Flask, render_template
 
 
 def create_app(test_config=None):
+    """This function creating the application, setting the configs, rendering the main page,
+    initialising db-connection and registering blueprints"""
+
     app = Flask(__name__, instance_relative_config=True)
 
     app.config.from_mapping(
