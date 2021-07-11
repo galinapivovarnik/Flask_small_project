@@ -14,4 +14,4 @@ Gif of application in action:
 <img src="https://media.giphy.com/media/GHiNZfhPCUbBHsYZrS/giphy.gif">
 
 
-(or watch mp4 video: https://drive.google.com/drive/folders/1zs11XeYs-5KzE-NVdmf0euQyBOMGIH-t?usp=sharing)
+(or watch mp4 video: https://drive.google.com/file/d/13LwR1kD9k1NBJtsQvH9smR3Tyv7hg8s7/view?usp=sharing)
