@@ -20,12 +20,9 @@ def create_app(test_config=None):
 
     @app.route('/')
     def index():
-        try:
-            db = dbase.get_db()
-            db.cursor().execute('DELETE FROM tests WHERE status=?', ('incomplete',))
-            db.commit()
-        except:
-            pass
+        db = dbase.get_db()
+        db.cursor().execute('DELETE FROM tests WHERE status=?', ('incomplete',))
+        db.commit()
         return render_template('index.html', title='Test yourself!')
 
     dbase.init_app(app)
