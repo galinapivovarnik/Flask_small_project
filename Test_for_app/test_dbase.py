@@ -1,7 +1,7 @@
 import sqlite3
 
 import pytest
-from ..flask_pet_project.dbase import get_db, init_db
+from ..flask_pet_project.dbase import get_db
 
 
 def test_get_close_dbase(app):
